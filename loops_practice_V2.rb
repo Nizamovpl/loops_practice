@@ -51,13 +51,13 @@ def either_2_4(list)
     return false 
 end
 
-def g_happy(str) #work on, all g's need to have a lowercase or capiltol ; String is happy if the g's have a conpanion
-    (str.size-2) do |n|
-        slice = str[i..(i+2)]
-        puts slice
-    end 
-end 
-g_happy("ghgghgh")
+# def g_happy(str) #work on, all g's need to have a lowercase or capiltol ; String is happy if the g's have a conpanion
+#     (str.size-2) do |n|
+#         slice = str[i..(i+2)]
+#         puts slice
+#     end 
+# end 
+# g_happy("ghgghgh")
 
 
 def middleway(list_one,list_two)  
@@ -82,7 +82,7 @@ def middleway(list_one,list_two)
     
 end
 
-def merge(list_one,list_two)   
+def merge(list_one,list_two) #sort the lists based on numerical value
     list_one.each do |i|
         merge_list.push(i)
     end
@@ -100,23 +100,24 @@ def shift_left(list) #I'm gonna have to do this legit, since I solved w/o loops
     list.push(first_number)
 end
 
-# def shift_left_loop(list)  #work on ; incompte
-#     first_number=list[0]
-#     new_list = []
-#     trash = []
-#     (list.size).times do |i|
-#         if  i == list[0]
-#             trash.push(i)
-#         else
-#             new_list.push(i)
-#         end
-#     end
-#     new_list.pop(0)
-# end
+def shift_left_loop(list)  #work on ; incompte
+    first_number=list[0]
+    new_list = []
+    trash = []
+    (list.size+1).times do |i|
+        if  i == list[0]
+            trash.push(i)
+        else
+            new_list.push(i)
+        end
+    end
+    new_list.delete(0)
+    new_list.push(first_number)
+    return new_list
+end
 
 # print shift_left_loop([1,2,3,4,5])
 
-#print shift_left_loop([1,2,3,4,5])
 
 def can_balance(list)  #given a non empty list return true if there is a split in the array so one side == the other
 
@@ -136,8 +137,6 @@ def gets_sandwich(str) #look for bread______bread and output what type of sandwi
           bread_index = 0
         end 
     end
-    
-    print bread_tracker
     # str.size.times do |j|  #supposed to delete all characters after final bread Maybe nest in the future
     #     slice = str[j..(j+4)]
     #     puts slice  
@@ -150,19 +149,43 @@ end
                   # 01234567891234678901
 # puts gets_sandwich("Hibreadhibreadhihihi")
 
-def max_span(list)  #take the range of the #
+def max_span(list)#figure out and redo
+    max = 0
+    min = 10000000000 
+    range = 0
+    list.each do |n|
+      if n > max
+        max = n
+      end
 
+      if n < min
+        min = n
+      end
+    end
+    range = max - min
+    return range
+end
+# print max_span([1,2,3,4,5])
+
+
+def count_code(str) #look for code in in a string but the 3rd letter can be any letter
+    count = 0
+    str.size.times do |i|
+       slice =str[i..(i+3)]
+       
+       slice.size.times do |j|
+          first_two = slice[i..(i+1)]
+          last_one = slice[i+3]
+       end
+       
+       puts slice
+       puts first_two
+       puts last_one
+        # if i= "co" && i+2 == "e"
+        #    count +=1
+        # end 
+    end
+    # return count
 end
 
-# def count_code(str) #look for code in in a string but the 3rd letter can be any letter
-       
-#     str.size.times do |i|
-#         two_at_a_time = 0
-#        one_at_a_time = 0
-#          if i+ = && i+2 ==
-#             count +=1
-#          end 
-#         end
-#     end
-
-# end
+print count_code("codecodecode")
