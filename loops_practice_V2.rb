@@ -90,17 +90,17 @@ def merge(list_one,list_two) #sort the lists based on numerical value
     list_two.each do |j|
         merge_list.push(j)
     end
-
+   #video on sorting things : https://www.youtube.com/watch?v=WaNLJf8xzC4
     return merge_list
 end
 
-def shift_left(list) #I'm gonna have to do this legit, since I solved w/o loops
+def shift_left(list) 
     first_number = list[0]
     list.delete(1)
     list.push(first_number)
 end
 
-def shift_left_loop(list)  #work on ; incompte
+def shift_left_loop(list) 
     first_number=list[0]
     new_list = []
     trash = []
@@ -116,7 +116,6 @@ def shift_left_loop(list)  #work on ; incompte
     return new_list
 end
 
-# print shift_left_loop([1,2,3,4,5])
 
 
 def can_balance(list)  #given a non empty list return true if there is a split in the array so one side == the other
@@ -131,23 +130,23 @@ def gets_sandwich(str) #look for bread______bread and output what type of sandwi
         slice = str[i..(i+4)]
         puts slice
         if  slice == "bread"  #running millions of times. Never exits out of the loop #if using an until loop; use break
-          bread_index = str.index("b")
+          bread_index = str.index(i)
           puts bread_index
           bread_tracker.push(bread_index)
           bread_index = 0
         end 
     end
-    # str.size.times do |j|  #supposed to delete all characters after final bread Maybe nest in the future
-    #     slice = str[j..(j+4)]
-    #     puts slice  
-    #     if slice == "daerb" 
-    #         final_bread = str.index("d")
-    #         puts final_bread
-    #     end
-    # end
+    (str.size-4).downto(0) do |j|  #supposed to delete all characters after final bread Maybe nest in the future
+        slice = str[j..(j+4)]
+        puts slice  
+        if slice == "daerb" 
+            final_bread = str.index("d")
+            puts final_bread
+        end
+    end
 end
-                  # 01234567891234678901
-# puts gets_sandwich("Hibreadhibreadhihihi")
+  #                 01234567891234678901
+puts gets_sandwich("Hibreadhibreadhihihi")
 
 def max_span(list)#figure out and redo
     max = 0
@@ -172,20 +171,18 @@ def count_code(str) #look for code in in a string but the 3rd letter can be any 
     count = 0
     str.size.times do |i|
        slice =str[i..(i+3)]
-       
-       slice.size.times do |j|
-          first_two = slice[i..(i+1)]
-          last_one = slice[i+3]
-       end
-       
-       puts slice
-       puts first_two
-       puts last_one
-        # if i= "co" && i+2 == "e"
-        #    count +=1
-        # end 
-    end
-    # return count
-end
 
-print count_code("codecodecode")
+        slice.size.times do |j|
+          first_slice = slice[j..(j+1)]
+          last_slice = slice[(j+3)]
+          if first_slice == "co"  && last_slice == "e"
+            count += 1
+          end 
+
+        end
+    end
+    return count
+end
+#                 012345678912
+# print count_code("cosecosecofe")
+# print count_code("sssssscodesssscofesss")
