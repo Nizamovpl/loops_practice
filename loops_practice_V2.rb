@@ -128,28 +128,24 @@ def gets_sandwich(str) #look for bread______bread and output what type of sandwi
     bread_tracker = []
    (str.size-4).times do |i|  #deleting all characters before initial bread
         slice = str[i..(i+4)]
-        puts slice
-        if  slice == "bread"  #running millions of times. Never exits out of the loop #if using an until loop; use break
-          bread_index = str.index(i)
-          puts bread_index
-          bread_tracker.push(bread_index)
+        count = 0 
+        if  slice == "bread"   #keeping track of where the "B's are in bread
+          count = i
+          bread_tracker.push(count)
           bread_index = 0
         end 
     end
-    (str.size-4).downto(0) do |j|  #supposed to delete all characters after final bread Maybe nest in the future
-        slice = str[j..(j+4)]
-        puts slice  
-        if slice == "daerb" 
-            final_bread = str.index("d")
-            puts final_bread
-        end
-    end
+    print bread_tracker
+    first_bread = bread_tracker[0]
+    last_bread = bread_tracker.pop  #should be 9
+    puts last_bread
+    str.slice((first_bread+5)...last_bread)
 end
   #                 01234567891234678901
 puts gets_sandwich("Hibreadhibreadhihihi")
 
-def max_span(list)#figure out and redo
-    max = 0
+def max_span(list)#I didn't understand this one at all :/ #I was reading this at home and didb't understand what
+    max = 0          #"leftmost" and "rightmost" means in this context
     min = 10000000000 
     range = 0
     list.each do |n|
